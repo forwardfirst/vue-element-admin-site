@@ -12,20 +12,18 @@ $ npm install vue-count-to --save
 
 > 加上 `--save` 参数会自动添加依赖到 package.json 中去。
 
-<br/>
-
 ## 使用
 
 ### 全局注册
 
 **main.js**
 
-```js
+```javascript
 import countTo from 'vue-count-to'
 Vue.component('countTo', countTo)
 ```
 
-```html
+```markup
 <template>
   <countTo :startVal='startVal' :endVal='endVal' :duration='3000'></countTo>
 </template>
@@ -33,7 +31,7 @@ Vue.component('countTo', countTo)
 
 ### 局部注册
 
-```html
+```markup
 <template>
   <countTo :startVal='startVal' :endVal='endVal' :duration='3000'></countTo>
 </template>
@@ -54,15 +52,13 @@ export default {
 
 ![](https://wpimg.wallstcn.com/8b95fac0-6691-4ad6-ba6c-e5d84527da06.gif)
 
-<br/>
-
 ## 在 vue 中优雅的使用第三方库
 
 在 Vuejs 项目中使用 JavaScript 库的一个优雅方式是将其代理到 Vue 的原型对象上去. 按照这种方式, 我们引入 Moment 库:
 
 **main.js**
 
-```js
+```javascript
 import moment from 'moment'
 Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 ```
@@ -71,7 +67,7 @@ Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 
 **MyNewComponent.vue**
 
-```js
+```javascript
 export default {
   created() {
     console.log('The time is '.this.$moment().format('HH:mm'))
@@ -86,3 +82,4 @@ export default {
 很多时候我们会发现，有些组件并没有 vue 版本，其实在 vue 中引入第三方组件是很简单的。只要在合适的声明周期里面初始化它就好了。一般在 `mounted`中，之后和正常使用它就没什么区别了。
 
 详细的可见文章：[手摸手，带你封装一个 vue component](https://segmentfault.com/a/1190000009090836)
+

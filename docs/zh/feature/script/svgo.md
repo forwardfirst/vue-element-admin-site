@@ -1,4 +1,4 @@
-# Svgo <Badge text="v3.9.0+"/>
+# Svgo
 
 本项目提供了 svg 压缩处理优化功能。基于 [svgo](https://github.com/svg/svgo)实现。
 
@@ -19,3 +19,4 @@ npm run svgo
 无用的信息都被处理掉了。
 
 更多详细的配置 可以在 `/scr/icons/svgo.yml`中进行配置。
+

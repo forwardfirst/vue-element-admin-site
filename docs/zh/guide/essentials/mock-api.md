@@ -4,14 +4,11 @@ Mock 数据是前端开发过程中必不可少的一环，是分离前后端开
 
 ## Swagger
 
-我司项目中通常使用 [swagger](https://swagger.io/) 由后端来模拟数据。
-**swagger** 是一个 REST APIs 文档生成工具，可以跨平台从代码注释中自动生成，开源，支持大部分语言，社区好，总之非常不错，强烈推荐。
-[线上 demo](http://petstore.swagger.io/?_ga=2.222649619.983598878.1509960455-2044209180.1509960455#/pet/addPet)
+我司项目中通常使用 [swagger](https://swagger.io/) 由后端来模拟数据。 **swagger** 是一个 REST APIs 文档生成工具，可以跨平台从代码注释中自动生成，开源，支持大部分语言，社区好，总之非常不错，强烈推荐。 [线上 demo](http://petstore.swagger.io/?_ga=2.222649619.983598878.1509960455-2044209180.1509960455#/pet/addPet)
 
 ## Easy-Mock
 
-[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) 使用的是 [easy-mock](https://easy-mock.com/login) 来模拟数据。
-它是一个纯前端可视化，并且能快速生成模拟数据的持久化服务。非常的简单易用还能结合 `swagger`，支持跨域 ，不管团队还是个人项目都值得一试。
+[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) 使用的是 [easy-mock](https://easy-mock.com/login) 来模拟数据。 它是一个纯前端可视化，并且能快速生成模拟数据的持久化服务。非常的简单易用还能结合 `swagger`，支持跨域 ，不管团队还是个人项目都值得一试。
 
 ## Mockjs
 
@@ -27,27 +24,26 @@ Mock 数据是前端开发过程中必不可少的一环，是分离前后端开
 
 有很多时候我们会遇到本地使用 mock 数据，线上环境使用真实数据。
 
-- **Easy-Mock 的形式**
+* **Easy-Mock 的形式**
 
-你需要保证你本地模拟 api 除了根路径其它的地址是一致的。
-比如：
+你需要保证你本地模拟 api 除了根路径其它的地址是一致的。 比如：
 
-```
+```text
 https://api-dev/login   // 本地请求
 
 https://api-prod/login  // 线上请求
 ```
 
-我们可以通过之后会介绍的[环境变量](/zh/guide/essentials/deploy.html#环境变量)来做到不同环境下，请求不同的 api 地址。
+我们可以通过之后会介绍的[环境变量](https://github.com/forwardfirst/vue-element-admin-site/tree/4baf3651fa649e12721a152722f6e90c13a20772/zh/guide/essentials/deploy.html#环境变量)来做到不同环境下，请求不同的 api 地址。
 
-```js
+```javascript
 //dev.env.js
 module.exports = {
   BASE_API: '"https://api-dev"' //注入本地api的根路径
 }
 ```
 
-```js
+```javascript
 //prod.env.js
 module.exports = {
   BASE_API: '"https://api-prod"' //注入线上api的根路径
@@ -56,7 +52,7 @@ module.exports = {
 
 之后根据环境变量创建`axios`实例，让它具有不同的`baseURL`。 [@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
 
-```js
+```javascript
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
@@ -66,11 +62,11 @@ const service = axios.create({
 
 这样我们就做到了自动根据环境变量切换本地和线上 api。
 
-- **Mock.js 的切换**
+* **Mock.js 的切换**
 
 当我们本地使用 `Mock.js` 模拟本地数据，线上使用真实环境 api 方法。这与上面的 easy-mock 的方法是差不多的。我们主要是判断：是线上环境的时候，不引入 mock 数据就可以了，只有在本地引入 `Mock.js`。
 
-```js
+```javascript
 //main.js
 if (process.env.NODE_ENV === 'development') {
   require('./mock') // simulation data
@@ -78,3 +74,4 @@ if (process.env.NODE_ENV === 'development') {
 ```
 
 只有在本地环境之中才会引入 mock 数据。
+

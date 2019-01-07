@@ -1,4 +1,4 @@
-# Svgo <Badge text="v3.9.0+"/>
+# Svgo
 
 This project provides svg compression processing optimization. Based on [svgo](https://github.com/svg/svgo).
 
@@ -6,8 +6,7 @@ This project provides svg compression processing optimization. Based on [svgo](h
 npm run svgo
 ```
 
-Many online downloads or svg exported by `Sketch` will have a lot of redundant and useless information, greatly increasing the size of svg. We can optimize it with `svgo`. For example, the following figure is an svg exported by `Sketch`
-![](https://wpimg.wallstcn.com/333edb6b-4b95-42f8-aa60-b8f42e516b52.jpg)
+Many online downloads or svg exported by `Sketch` will have a lot of redundant and useless information, greatly increasing the size of svg. We can optimize it with `svgo`. For example, the following figure is an svg exported by `Sketch` ![](https://wpimg.wallstcn.com/333edb6b-4b95-42f8-aa60-b8f42e516b52.jpg)
 
 We can execute `npm run svgo`
 
@@ -18,3 +17,4 @@ We can execute `npm run svgo`
 Useless information is processed.
 
 More detailed configuration can be configured in `/scr/icons/svgo.yml`.
+

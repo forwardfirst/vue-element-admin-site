@@ -22,7 +22,7 @@ All test or production environment variables are configured under the `@/build/c
 
 They all inject into the global context via the `webpack.DefinePlugin` plug-ins.
 
-```js
+```javascript
 new webpack.DefinePlugin({
   'process.env': require('../config/xxx.env')
 })
@@ -30,7 +30,7 @@ new webpack.DefinePlugin({
 
 You can simply get your configuration environment variables directly using your code such as:
 
-```js
+```javascript
 // So you can get the base_url configured in @/build/config
 const baseURL = process.env.BASE_API,
 ```
@@ -43,23 +43,19 @@ If your build file is large, you can optimize your code by building and analyzin
 npm run build:prod --report
 ```
 
-After running you can see the specific size distribution at http://127.0.0.1:8888
+After running you can see the specific size distribution at [http://127.0.0.1:8888](http://127.0.0.1:8888)
 
 ![](https://wpimg.wallstcn.com/3fddf034-2b38-4299-b0d2-b748fb2abef0.jpg)
 
-::: tip
-It is recommended to use gzip, after using the volume will be only the original 1/3 or so. You can also use lazy loading or Code Splitting.
-:::
+::: tip It is recommended to use gzip, after using the volume will be only the original 1/3 or so. You can also use lazy loading or Code Splitting. :::
 
 ## Publish
 
 For publishing, you only have to publish the resulting static file after build, which is usually the static file in the `dist` folder, to your cdn or static server. Note that the `index.html` usually will be an entry page for your backend service. You may need to change the page's import path after determining static for JS and css.
 
-::: tip
-In deployment may find that the resource path is wrong, just modify the `@/config/index.js` file resource path.
-:::
+::: tip In deployment may find that the resource path is wrong, just modify the `@/config/index.js` file resource path. :::
 
-```js
+```javascript
 // changes configure depending on your own path
 assetsPublicPath: './'
 ```
@@ -74,12 +70,11 @@ This project uses `hashHistory` by default, so if you have`#`in your url and you
 
 Modify `src/router/index.js` mode。
 
-```js
+```javascript
 export default new Router({
   // mode: 'history' // Need backend support
 })
 ```
 
-::: tip
-Detail see [vue-router document](https://router.vuejs.org/zh-cn/essentials/history-mode.html)
-:::
+::: tip Detail see [vue-router document](https://router.vuejs.org/zh-cn/essentials/history-mode.html) :::
+

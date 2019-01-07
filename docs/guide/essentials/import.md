@@ -14,20 +14,18 @@ $ npm install vue-count-to --save
 
 > add `--save` will automatically add dependencies to package.json.
 
-<br/>
-
 ## Usage
 
 ### Global Registration
 
 **main.js**
 
-```js
+```javascript
 import countTo from 'vue-count-to'
 Vue.component('countTo', countTo)
 ```
 
-```html
+```markup
 <template>
   <countTo :startVal='startVal' :endVal='endVal' :duration='3000'></countTo>
 </template>
@@ -35,7 +33,7 @@ Vue.component('countTo', countTo)
 
 ### Local Registration
 
-```html
+```markup
 <template>
   <countTo :startVal='startVal' :endVal='endVal' :duration='3000'></countTo>
 </template>
@@ -56,8 +54,7 @@ export default {
 
 ![](https://wpimg.wallstcn.com/8b95fac0-6691-4ad6-ba6c-e5d84527da06.gif)
 
-<br/>
-
 ## Use Any Javascript Library With Vue.js
 
 [Use Any Javascript Library With Vue.js](https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/)
+

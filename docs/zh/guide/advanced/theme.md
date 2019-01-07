@@ -4,8 +4,7 @@
 
 ## 样式覆盖
 
-element-ui 的通用样式变量可能无法满足所有定制需求，你可以通过覆盖默认的组件样式的方式实现。
-由于 element-ui 的样式我们是在全局引入的，所以你想在某个`view`里面覆盖它的样式就不能加 scoped，但你又想只覆盖这个页面的 element 样式，你就可在它的父级加一个 class，以用命名空间来解决问题。或者使用[深度作用选择器](https://vue-loader.vuejs.org/zh/guide/scoped-css.html#%E6%B7%B1%E5%BA%A6%E4%BD%9C%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8)。
+element-ui 的通用样式变量可能无法满足所有定制需求，你可以通过覆盖默认的组件样式的方式实现。 由于 element-ui 的样式我们是在全局引入的，所以你想在某个`view`里面覆盖它的样式就不能加 scoped，但你又想只覆盖这个页面的 element 样式，你就可在它的父级加一个 class，以用命名空间来解决问题。或者使用[深度作用选择器](https://vue-loader.vuejs.org/zh/guide/scoped-css.html#深度作用选择器)。
 
 ```css
 /* 你的命名空间 */
@@ -19,26 +18,19 @@ element-ui 的通用样式变量可能无法满足所有定制需求，你可以
 
 一些全局的 element-ui 样式修改可以在 [@/src/styles/element-ui.scss](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/styles/element-ui.scss) 中进行设置。
 
-<br/>
-
 ## 动态换肤
 
 本项目提供了两种动态换肤的功能，各有利弊，请结合个人需求自行选择。
 
 ### element-ui 官方文档页面 换肤方式
 
-element-ui 升级为 2.0 之后官方文档的右上角提供了动态换肤的功能，本项目也提供了改功能。
-代码地址：[@/src/components/ThemePicker](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ThemePicker/index.vue)。
+element-ui 升级为 2.0 之后官方文档的右上角提供了动态换肤的功能，本项目也提供了改功能。 代码地址：[@/src/components/ThemePicker](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ThemePicker/index.vue)。
 
-**简单说明一下它的原理：**
-element-ui 2.0 版本之后所有的样式都是基于 SCSS 编写的，所有的颜色都是基于几个基础颜色[变量](https://github.com/PanJiaChen/custom-element-theme/blob/master/element-variables.scss)来设置的，所以就不难实现动态换肤了，只要找到那几个颜色变量修改它就可以了。
-首先我们需要拿到通过 `package.json` 拿到 element-ui 的版本号，根据该版本号去请求相应的样式。拿到样式之后将样色，通过正则匹配和替换，将颜色变量替换成你需要的，之后动态添加 `style` 标签来覆盖原有的 css 样式。
+**简单说明一下它的原理：** element-ui 2.0 版本之后所有的样式都是基于 SCSS 编写的，所有的颜色都是基于几个基础颜色[变量](https://github.com/PanJiaChen/custom-element-theme/blob/master/element-variables.scss)来设置的，所以就不难实现动态换肤了，只要找到那几个颜色变量修改它就可以了。 首先我们需要拿到通过 `package.json` 拿到 element-ui 的版本号，根据该版本号去请求相应的样式。拿到样式之后将样色，通过正则匹配和替换，将颜色变量替换成你需要的，之后动态添加 `style` 标签来覆盖原有的 css 样式。
 
-::: tip
-这里需要获取 element-ui 的版本号，从而锁定版本，以免将来 Element 升级时受到非兼容性更新的影响。
-:::
+::: tip 这里需要获取 element-ui 的版本号，从而锁定版本，以免将来 Element 升级时受到非兼容性更新的影响。 :::
 
-```js
+```javascript
 const version = require('element-ui/package.json').version
 
 const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
@@ -61,17 +53,14 @@ getCSSString(url, callback, variable) {
 
 在项目中引入 ThemePicker 组件即可
 
-```js
+```javascript
 import ThemePicker from '@/components/ThemePicker'
 ```
 
-- 优点
-  - 无需准备多套主题，可以自由动态换肤
-- 缺点
-  - 自定义不够，只支持基础颜色的切换
-
-<br/>
-<br/>
+* 优点
+  * 无需准备多套主题，可以自由动态换肤
+* 缺点
+  * 自定义不够，只支持基础颜色的切换
 
 ### 多套主题换肤
 
@@ -101,10 +90,9 @@ npm install
 
 首先执行 `et -i` 生成 `element-variables.scss` 存放样式变量的文件，然后进入 `element-variables.scss` 文件 修改你自己需要的变量，修改完成之后执行 `et` ， 编译主题，最后执行`gulp` 生成命名空间。所有生成文件在 `dist` 目录下，你只需复制文件下所有内容到 `vue-element-admin` 项目中 `src/assets/custom-theme` 进行覆盖替换就行
 
-::: tip
-如果需要修改打包生成样式命名空间的名字 只要修改该[变量](https://github.com/PanJiaChen/custom-element-theme/blob/master/gulpfile.js#L6)即可
-:::
+::: tip 如果需要修改打包生成样式命名空间的名字 只要修改该[变量](https://github.com/PanJiaChen/custom-element-theme/blob/master/gulpfile.js#L6)即可 :::
 
 ![](https://wpimg.wallstcn.com/0726b472-90f4-4fe9-a665-26fb8f9795c3.gif)
 
 [更多动态换肤文章](https://segmentfault.com/a/1190000009762198#articleHeader2)
+

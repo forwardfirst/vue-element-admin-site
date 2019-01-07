@@ -1,10 +1,10 @@
-# Pagination <Badge text="v3.9.2+"/>
+# Pagination
 
 Pagination component is mainly based on Element 'el-pagination' for the secondary packaging, and expanded the function of auto-scroll.
 
 ## Basic Usage
 
-```html
+```markup
 <template>
   <pagination
     :total="total"
@@ -38,25 +38,25 @@ export default {
 
 ## Attributes
 
-|  Attribute  | Description                                                 |   Type    |     Default     |
-| :---------: | :---------------------------------------------------------- | :-------: | :-------------: |
-|    total    | total item count                                            |  Number   |        /        |
-|    page     | current page number, supports the .sync modifier            |  Number   |        1        |
-|    limit    | item count of each page, supports the .sync modifier        |  Number   |       20        |
-| page-sizes  | options of item count per page                              | Number [] | 10, 20, 30, 50] |  |
-|   hidden    | whether to hide                                             |  Boolean  |      false      |
-| auto-scroll | whether to automatically scroll to the top after pagination |  Boolean  |      true       |
+| Attribute | Description | Type | Default |  |
+| :---: | :--- | :---: | :---: | :--- |
+| total | total item count | Number | / |  |
+| page | current page number, supports the .sync modifier | Number | 1 |  |
+| limit | item count of each page, supports the .sync modifier | Number | 20 |  |
+| page-sizes | options of item count per page | Number \[\] | 10, 20, 30, 50\] |  |
+| hidden | whether to hide | Boolean | false |  |
+| auto-scroll | whether to automatically scroll to the top after pagination | Boolean | true |  |
 
 Other attributes of the element's `el-pagination` support are also supported. See [Documentation](http://element.eleme.io/#/zh-CN/component/pagination) for details.
 
 ## Events
 
-| Event Name | Description                              | Parameters   |
-| ---------- | ---------------------------------------- | ------------ |
+| Event Name | Description | Parameters |
+| :--- | :--- | :--- |
 | pagination | Triggered when the limit or page changes | {page,limit} |
 
 ## Source Code && Demo
 
-- [Source Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Pagination/index.vue)
+* [Source Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Pagination/index.vue)
+* [Online Demo](https://panjiachen.github.io/vue-element-admin/#/table/complex-table)
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/table/complex-table)

@@ -8,7 +8,7 @@ features:
   - title: Feature-rich
     details: Typical templates for enterprise applications and various components
   - title: Best Practice
-    details: Reasonable framework choice, good engineering practice
+    details: 'Reasonable framework choice, good engineering practice'
   - title: Up-to-date Dev Stack
     details: Development using front-end advanced technology
   - title: Permission Validation
@@ -20,7 +20,7 @@ features:
 footer: MIT Licensed | Copyright © 2017-present PanJiaChen
 ---
 
-## Getting Started
+# Getting Started
 
 ```bash
 # clone the project
@@ -32,3 +32,4 @@ npm install
 # develop
 npm run dev
 ```
+

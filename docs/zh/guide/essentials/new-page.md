@@ -6,7 +6,7 @@
 
 **如：新增一个 excel 页面**
 
-```js
+```javascript
 {
   path: '/excel',
   component: Layout,
@@ -19,11 +19,9 @@
 }
 ```
 
-::: tip
-仅仅这样不会有任何效果的，它只是创建了一个基于`layout`的一级路由，你还需要在它下面的 `children` 中添加子路由。
-:::
+::: tip 仅仅这样不会有任何效果的，它只是创建了一个基于`layout`的一级路由，你还需要在它下面的 `children` 中添加子路由。 :::
 
-```js
+```javascript
 {
   path: '/excel',
   component: Layout,
@@ -44,18 +42,13 @@
 }
 ```
 
-**这样侧边栏就会出现如图所示的 `menu-item` 了**
+**这样侧边栏就会出现如图所示的** `menu-item` **了**
 
 ![](https://wpimg.wallstcn.com/2ab6921d-f9bb-4fbb-a151-0e6027e23a6e.png)
 
-<br/>
+::: tip 由于 `children` 下面只声明了一个路由所以不会有展开箭头，如果`children`下面的路由个数大于 1 就会有展开箭头，如下面所示。 如果你想忽视这个自动判断可以使用 `alwaysShow: true`，这样它就会忽略之前定义的规则，一直显示根路由。详情见[路由和侧边栏](https://github.com/forwardfirst/vue-element-admin-site/tree/4baf3651fa649e12721a152722f6e90c13a20772/zh/guide/essentials/router-and-nav.html#路由和侧边栏) :::
 
-::: tip
-由于 `children` 下面只声明了一个路由所以不会有展开箭头，如果`children`下面的路由个数大于 1 就会有展开箭头，如下面所示。
-如果你想忽视这个自动判断可以使用 `alwaysShow: true`，这样它就会忽略之前定义的规则，一直显示根路由。详情见[路由和侧边栏](/zh/guide/essentials/router-and-nav.html#路由和侧边栏)
-:::
-
-```js
+```javascript
 {
   path: '/excel',
   component: Layout,
@@ -75,12 +68,9 @@
 
 ![](https://wpimg.wallstcn.com/89d6a0b8-5cf7-4a19-9afd-7267ec454066.png)
 
-**侧边栏就会出现如图所示的 `submenu` 了**
+**侧边栏就会出现如图所示的** `submenu` **了**
 
-<br/>
-<br/>
-
-## 多级目录(嵌套路由)
+## 多级目录\(嵌套路由\)
 
 如果你的路由是多级目录，如本项目 [@/views/nested](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/views/nested) 那样， 有三级路由嵌套的情况下，不要忘记还要手动在二级目录的根文件下添加一个 `<router-view>`。
 
@@ -88,16 +78,11 @@
 
 ![](https://wpimg.wallstcn.com/9459de62-64d0-4819-9730-daf3f9889018.png)
 
-<br/>
-
 ## 新增 view
 
 新增完路由之后不要忘记在 `@/views` 文件下 创建对应的文件夹，一般性一个路由对应一个文件，该模块下的功能组件或者方法就建议在本文件夹下创建一个`utils`或`components`文件夹，各个功能模块维护自己的`utils`或`components`组件。如：
 
 ![](https://wpimg.wallstcn.com/8ca55a30-c22c-4143-aa8d-2a0d3e04fc33.png)
-
-<br/>
-<br/>
 
 ## 新增 api
 
@@ -126,3 +111,4 @@
 }
 </style>
 ```
+

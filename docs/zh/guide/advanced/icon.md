@@ -8,25 +8,21 @@
 
 > 如果你已经有了设计稿，只是需要生成相关代码，可以上传你的图标后，再进行上面的操作。
 
-<img width="600" alt="账户相关布局" src="https://gw.alipayobjects.com/zos/rmsportal/jJQYzRyqVFBBamUOppXH.png" />
-
-<br />
+![&#x8D26;&#x6237;&#x76F8;&#x5173;&#x5E03;&#x5C40;](https://gw.alipayobjects.com/zos/rmsportal/jJQYzRyqVFBBamUOppXH.png)
 
 **现在本项目支持和推荐单独导出 svg 的引入使用方式。下载方式如下图：**
 
-<img width="600" src="https://wpimg.wallstcn.com/1f8b1e56-cfd9-4ef7-a0aa-dfb0c2883aa3.gif" />
-
-<br />
+![](https://wpimg.wallstcn.com/1f8b1e56-cfd9-4ef7-a0aa-dfb0c2883aa3.gif)
 
 下载完成之后将下载好的 .svg 文件放入 `@/icons/svg` 文件夹下之后就会自动导入。
 
 ## 使用方式
 
-```js
+```javascript
 <svg-icon icon-class="password" /> //icon-class 为 icon 的名字
 ```
 
-[组件介绍](/zh/component/svg-icon.md)
+[组件介绍](https://github.com/forwardfirst/vue-element-admin-site/tree/4baf3651fa649e12721a152722f6e90c13a20772/zh/component/svg-icon.md)
 
 ## 改变颜色
 
@@ -34,10 +30,9 @@
 
 你可以改变父级的`color`或者直接改变`fill`的颜色即可。
 
-:::tip
-如果你遇到图标颜色不对，可以参照本[issue](https://github.com/PanJiaChen/vue-element-admin/issues/330)进行修改
-:::
+:::tip 如果你遇到图标颜色不对，可以参照本[issue](https://github.com/PanJiaChen/vue-element-admin/issues/330)进行修改 :::
 
 ## 详细文章
 
 更多详细内容 可阅读该文: [手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)
+

@@ -4,15 +4,15 @@
 
 In `vue-element-admin` , a complete front-end UI interacts to the server-side processing flow as follows:
 
-1.  UI component interaction;
-2.  Call unified management API service request function;
-3.  Send requests using encapsulated request.js;
-4.  Get server return;
-5.  Update data;
+1. UI component interaction;
+2. Call unified management API service request function;
+3. Send requests using encapsulated request.js;
+4. Get server return;
+5. Update data;
 
 As you can see from the above flow, in order to facilitate management and maintenance, unified request processing is placed in the `src/api` folder and the files are generally split according to the model latitude,such as:
 
-```
+```text
 api/
   login.js
   article.js
@@ -28,7 +28,7 @@ It encapsulates the global `request interceptor`, `response interceptor`,`unifie
 
 ## An example of a request article list:
 
-```js
+```javascript
 // api/article.js
 import request from '../utils/request';
 export function fetchList(query) {
@@ -61,3 +61,4 @@ export default {
 ## Switch from mock directly to server request
 
 See [Mock Data](mock-api.md)
+

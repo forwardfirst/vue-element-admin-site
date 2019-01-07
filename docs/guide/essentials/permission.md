@@ -1,6 +1,6 @@
 # Permission
 
-It has been introduced in detail in this article--[手摸手，带你用 vue 撸后台 系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac).
+It has been introduced in detail in this article--[手摸手，带你用 vue 撸后台 系列二\(登录权限篇\)](https://juejin.im/post/591aa14f570c35006961acac).
 
 The implementation of this project's permission is: compare the routing table by obtaining the current user's permission, and generate the routing table accessible by the current user with the permission, and dynamically mount it to `router` through `router.addRoutes`.
 
@@ -8,7 +8,7 @@ But in fact, the business logic of many companies may not be the case. For examp
 
 Just one more step to map the back-end return routing table with the local components. [issue](https://github.com/PanJiaChen/vue-element-admin/issues/293)
 
-```js
+```javascript
 const map={
  login:require('login/index').default // sync
  login:()=>import('login/index')      // async
@@ -33,7 +33,7 @@ Write a permission directive, and can easily and quickly implement button-level 
 
 **Use**
 
-```html
+```markup
 <template>
   <!-- Admin can see this -->
   <el-tag v-permission="['admin']">admin</el-tag>
@@ -60,7 +60,7 @@ In some cases it is not suitable to use v-permission, such as element Tab compon
 
 You can use the global permission judgment function. The usage is similar to the instruction `v-permission`.
 
-```html
+```markup
 <template>
   <el-tab-pane v-if="checkPermission(['admin'])" label="Admin">Admin can see this</el-tab-pane>
   <el-tab-pane v-if="checkPermission(['editor'])" label="Editor">Editor can see this</el-tab-pane>
@@ -77,3 +77,4 @@ export default{
 }
 </script>
 ```
+

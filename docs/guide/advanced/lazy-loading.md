@@ -4,32 +4,30 @@ When you package an application, the Javascript package becomes very large, affe
 
 Combining Vue's [async component feature](https://vuejs.org/v2/guide/components-dynamic-async.html#Async-Components) and webpack's [code splitting feature](https://webpack.js.org/guides/code-splitting/), it's trivially easy to lazy-load route components.
 
-```js
+```javascript
 const Foo = () => import('./Foo.vue')
 ```
-
-<br>
 
 **When you think your page's hot reload is slow, you need to look down ↓**
 
 ## Differentiating development and production environments
 
-**[This solution has been eliminated]**
+**\[This solution has been eliminated\]**
 
 When you have more and more pages in your project, using `lazy-loading` in the development environment becomes less appropriate, and every change of code that triggers a hot update becomes very slow. Therefore, it is recommended to only use the lazy loading function in the build environment.
 
 **Development:**
 
-```js
+```javascript
 // vue-loader at least v13.0.0+
 module.exports = file => require('@/views/' + file + '.vue').default
 ```
 
-**Note here that this method only supports `vue-loader at least v13.0.0+`**[vue-element-admin/issues/231](https://github.com/PanJiaChen/vue-element-admin/issues/231)
+**Note here that this method only supports** `vue-loader at least v13.0.0+`[vue-element-admin/issues/231](https://github.com/PanJiaChen/vue-element-admin/issues/231)
 
 Production：
 
-```js
+```javascript
 module.exports = file => () => import('@/views/' + file + '.vue')
 ```
 
@@ -37,16 +35,13 @@ module.exports = file => () => import('@/views/' + file + '.vue')
 
 Of course, there are some side effects of writing this way. due to
 
-> Every module that could potentially be requested on an import() call is included. For example, import(./locale/${language}.json) will cause every .json file in the ./locale directory to be bundled into the new chunk. At run time, when the variable language has been computed, any file like english.json or german.json will be available for consumption.
+> Every module that could potentially be requested on an import\(\) call is included. For example, import\(./locale/${language}.json\) will cause every .json file in the ./locale directory to be bundled into the new chunk. At run time, when the variable language has been computed, any file like english.json or german.json will be available for consumption.
 
-::: tip
-The user can measure whether to adopt this method according to the business situation. If your project is not large and you can also accept the local development hot update speed. You can continue to use lazy loading to avoid this side effect in all environments.
-:::
+::: tip The user can measure whether to adopt this method according to the business situation. If your project is not large and you can also accept the local development hot update speed. You can continue to use lazy loading to avoid this side effect in all environments. :::
 
 ## New Plan
 
-Use `babel plugins` [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node).
-It only does one thing by converting all `import()` to `require()`, so that all asynchronous components can be import synchronously using this plugin. Combined with the babel environment variable [BABEL_ENV](https://babeljs.io/docs/usage/babelrc/#env-option), let it only work in the development environment, in the development environment will convert all import () into require ().
+Use `babel plugins` [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node). It only does one thing by converting all `import()` to `require()`, so that all asynchronous components can be import synchronously using this plugin. Combined with the babel environment variable [BABEL\_ENV](https://babeljs.io/docs/usage/babelrc/#env-option), let it only work in the development environment, in the development environment will convert all import \(\) into require \(\).
 
 This solution to solve the problem of repeated packaging before, while the invasiveness of the code is also very small, you usually write routing only need to follow the lazy loading method of the [official document](https://router.vuejs.org/guide/advanced/lazy-loading.html) routing on it, the other are handed to the handle of the cable, When you don't want to use this program, just remove it from Babel's plugins.
 
@@ -54,13 +49,13 @@ This solution to solve the problem of repeated packaging before, while the invas
 
 First add `BABEL_ENV` to `package.json`
 
-```json
+```javascript
 "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
 ```
 
 Then `.babelrc` can only include the `babel-plugin-dynamic-import-node` `plugins` and make it work only in the `development` mode.
 
-```json
+```javascript
 {
   "env": {
     "development": {
@@ -72,7 +67,7 @@ Then `.babelrc` can only include the `babel-plugin-dynamic-import-node` `plugins
 
 After that, you're done. Routing can be written as usual.
 
-```js
+```javascript
  { path: '/login', component: () => import('@/views/login/index')}
 ```
 
@@ -81,3 +76,4 @@ After that, you're done. Routing can be written as usual.
 ## Improve
 
 Webpack4 has been out, greatly improving the speed of packaging and compiling, and may not need to be so complicated afterwards. More page hot updates can be made quickly, completely eliminating the need for previously mentioned solutions.
+

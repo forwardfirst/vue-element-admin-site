@@ -8,7 +8,7 @@ This project router and nav are bound together, so you only have to configure th
 
 First let us know what configuration items are provided config route.
 
-```js
+```javascript
 // if set to true, lt will not appear in sidebar nav.
 // e.g. login or 401 page or as some editing pages /edit/1 (Default: false)
 hidden: true
@@ -47,11 +47,9 @@ meta: {
 }
 ```
 
-<br/>
-
 **Example：**
 
-```js
+```javascript
 {
   path: '/permission',
   component: Layout,
@@ -81,17 +79,13 @@ There are two types of routes here , `constantRouterMap` and `asyncRouterMap`.
 
 **asyncRouterMap:** represents pages that require dynamic judgment permissions and are dynamically added through `addRouters`. The details will be introduced on the [permission](permission.md).
 
-::: tip
-All routing pages here use the `router lazy loading`, as described in [document](/guide/advanced/lazy-loading.md)
+::: tip All routing pages here use the `router lazy loading`, as described in [document](https://github.com/forwardfirst/vue-element-admin-site/tree/4baf3651fa649e12721a152722f6e90c13a20772/guide/advanced/lazy-loading.md)
 
-If you want to know more about browserHistory and hashHistory, please refer to [Build & Deploy](deploy.md).
-:::
+If you want to know more about browserHistory and hashHistory, please refer to [Build & Deploy](deploy.md). :::
 
 The other configurations are no different from the [vue-router](https://router.vuejs.org/en/) official, so check the documentation for yourself.
 
-::: warning
-There is one thing to be careful about is that the 404 page must be the last to load, if it is declared in constantRouterMap. Later declared pages will be blocked to 404, see the details of the problem: [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176)
-:::
+::: warning There is one thing to be careful about is that the 404 page must be the last to load, if it is declared in constantRouterMap. Later declared pages will be blocked to 404, see the details of the problem: [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176) :::
 
 ## Sidebar
 
@@ -107,9 +101,9 @@ This also modify many default sidebar styles of `element-ui`. All css can be fou
 
 ![](https://wpimg.wallstcn.com/e94739d6-d701-45c8-8c6e-0f4bb10c3b46.png)
 
-The sidebar has already helped you to make a judgment. When you route a children below the declaration of more than >1 routes, it will automatically become a nested mode. If the sub-route is exactly equal to one, the sub-route is displayed as a root route in the sidebar by default. If you do not want to, you can disable this feature by setting `alwaysShow: true` in the root route. Such as:
+The sidebar has already helped you to make a judgment. When you route a children below the declaration of more than &gt;1 routes, it will automatically become a nested mode. If the sub-route is exactly equal to one, the sub-route is displayed as a root route in the sidebar by default. If you do not want to, you can disable this feature by setting `alwaysShow: true` in the root route. Such as:
 
-```js
+```javascript
 // no submenu, because children.length===1
 {
   path: '/icon',
@@ -140,13 +134,13 @@ The sidebar has already helped you to make a judgment. When you route a children
 
 ## Click the sidebar to refresh the current route
 
-Before using the development model of spa(single page application), each time the user clicks the sidebar will request this page again, the user gradually developed the habit of clicking the current route in the sidebar to refresh the view. But now the spa is not the same, the user clicks the currently highlighted route and does not refresh the view, because the vue-router will intercept your routing, it determines your url does not change, so it will not trigger any hook or view changes.[Related issue](https://github.com/vuejs/vue-router/issues/296), the community has also heated discussions on the issue.
+Before using the development model of spa\(single page application\), each time the user clicks the sidebar will request this page again, the user gradually developed the habit of clicking the current route in the sidebar to refresh the view. But now the spa is not the same, the user clicks the currently highlighted route and does not refresh the view, because the vue-router will intercept your routing, it determines your url does not change, so it will not trigger any hook or view changes.[Related issue](https://github.com/vuejs/vue-router/issues/296), the community has also heated discussions on the issue.
 
 ![](https://wpimg.wallstcn.com/5d0b0391-ea6a-45f2-943e-aff5dbe74d12.png)
 
-`yyx990803`also said that he wanted to add a way to brighten the view, but later he changed his mind again/(ㄒ o ㄒ)/~~ But demand is here, what should we do? He said it would not trigger anything without changing the current URL, so can I force the trigger? The hack is simple. By changing the url query to trigger the view changes。We listen to each link's click event on the sidebar, each click will push a different query for the router to ensure that the view is refreshed.
+`yyx990803`also said that he wanted to add a way to brighten the view, but later he changed his mind again/\(ㄒ o ㄒ\)/~~ But demand is here, what should we do? He said it would not trigger anything without changing the current URL, so can I force the trigger? The hack is simple. By changing the url query to trigger the view changes。We listen to each link's click event on the sidebar, each click will push a different query for the router to ensure that the view is refreshed.
 
-```js
+```javascript
 clickLink(path) {
   this.$router.push({
     path,
@@ -164,8 +158,6 @@ ps: Don't forget to add a unique `key` to `router-view`, such as `<router-view :
 But there's also a drawback the ugly `query` suffix behind url, such as `xxx.com/article/list?t=1496832345025`
 
 You can know from the previous issue that there are many other options. In my company project, the solution adopted is to determine whether the currently clicked menu route is consistent with the current route. However, when it is consistent, it will jump to a dedicated Redirect page, which will redirect the route to Go to the page, this will have a refresh effect.
-
-<br>
 
 ## Breadcrumb
 
@@ -187,22 +179,19 @@ overflow-y: scroll;
 }
 ```
 
-But hack by css has some problems, in Firefox or other lower versions of the browser will be less beautiful.
-Second, in the case of sidebar collapses, limited to `menu` of`element-ui`, can not be handled in this way.
+But hack by css has some problems, in Firefox or other lower versions of the browser will be less beautiful. Second, in the case of sidebar collapses, limited to `menu` of`element-ui`, can not be handled in this way.
 
 So the current version uses `el-scrollbar` to handle the sidebar scrolling problem.
 
-::: tip Code
-[@/components/Sidebar](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/layout/components/Sidebar/index.vue)
-:::
+::: tip Code [@/components/Sidebar](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/layout/components/Sidebar/index.vue) :::
 
-## Sidebar external-link <Badge text="v3.8.2+"/>
+## Sidebar external-link 
 
 You can also configure an external-link in the sidebar. As long as you fill in the legal url path in `path`, you will be able to open this page when you click on the sidebar.
 
 E.g.
 
-```json
+```javascript
 {
   "path": "external-link",
   "component": Layout,
@@ -214,3 +203,4 @@ E.g.
   ]
 }
 ```
+

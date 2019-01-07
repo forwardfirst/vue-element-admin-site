@@ -19,7 +19,7 @@ npm install script-loader -S -D
 
 Since `js-xlsx` size is still very large, the export function is not a very common function, so lazy loading is recommended when using it. The method of use is as follows:
 
-```js
+```javascript
 import('@/vendor/Export2Excel').then(excel => {
   excel.export_json_to_excel({
     header: tHeader, //Header Required
@@ -31,23 +31,21 @@ import('@/vendor/Export2Excel').then(excel => {
 })
 ```
 
-:::warning Warning <Badge text="v3.9.1+"/>
-The compatibility code for Bolb has been removed in the later versions of `v3.9.1+`. If you need to be compatible with very low-level browsers, you can manually introduce [blob-polyfill](https://www.npmjs.com/package/blob-polyfill) .
-:::
+:::warning Warning  The compatibility code for Bolb has been removed in the later versions of `v3.9.1+`. If you need to be compatible with very low-level browsers, you can manually introduce [blob-polyfill](https://www.npmjs.com/package/blob-polyfill) . :::
 
 ### Params
 
-| Params    | Description                 | Type    | Accepted Values                                                                     | Default    |
-| --------- | --------------------------- | ------- | ----------------------------------------------------------------------------------- | ---------- |
-| header    | Export header of data       | Array   | /                                                                                   | []         |
-| data      | Exported specific data      | Array   | /                                                                                   | []]        |
-| filename  | Export file name            | String  | /                                                                                   | excel-list |
-| autoWidth | Whether the cell auto width | Boolean | true / false                                                                        | true       |
-| bookType  | Export file type            | String  | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx       |
+| Params | Description | Type | Accepted Values | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| header | Export header of data | Array | / | \[\] |
+| data | Exported specific data | Array | / | \[\]\] |
+| filename | Export file name | String | / | excel-list |
+| autoWidth | Whether the cell auto width | Boolean | true / false | true |
+| bookType | Export file type | String | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx |
 
 ### Example
 
-```js
+```javascript
 import('@/vendor/Export2Excel').then(excel => {
   const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
   const data = this.list
@@ -61,8 +59,8 @@ import('@/vendor/Export2Excel').then(excel => {
 })
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
+* [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
+* [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
 
 ## Excel Import
 
@@ -70,11 +68,11 @@ Encapsulated [UploadExcel](https://github.com/PanJiaChen/vue-element-admin/blob/
 
 It provides two callback functions:
 
-- beforeUpload
+* beforeUpload
 
   You can make some special judgments before uploading. For example, if the size of the file is greater than 1 megabyte? If it is greater than 1 megabyte, it stops parsing and prompts an error message.
 
-  ```js
+  ```javascript
   beforeUpload(file) {
       const isLt1M = file.size / 1024 / 1024 < 1
 
@@ -90,15 +88,15 @@ It provides two callback functions:
     }
   ```
 
-- onSuccess
-  A callback function that fires when parsing succeeds, which returns the header and content of the table.
+* onSuccess A callback function that fires when parsing succeeds, which returns the header and content of the table.
 
-```js
+```javascript
  handleSuccess({ results, header }) {
       this.tableData = results
       this.tableHeader = header
     }
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/uploadExcel.vue)
+* [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
+* [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/uploadExcel.vue)
+

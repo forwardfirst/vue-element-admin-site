@@ -4,9 +4,8 @@
 
 In the code of stylIn the style development process, there are two issues are more prominent:
 
-- Global pollution —— The selector in the CSS file is global. The same name selector in different files, according to the order in the build generation file, the styles generated later will overwrite the previous ones.
-
-- Selector complex —— In order to avoid the above problems, we have to be careful when writing styles, the name of the class will be marked with a range of restrictions, multi-person development is also very easy to lead to the chaos of the naming style. The classnames getting longer and longer. Eventually, it's hard to maintain.
+* Global pollution —— The selector in the CSS file is global. The same name selector in different files, according to the order in the build generation file, the styles generated later will overwrite the previous ones.
+* Selector complex —— In order to avoid the above problems, we have to be careful when writing styles, the name of the class will be marked with a range of restrictions, multi-person development is also very easy to lead to the chaos of the naming style. The classnames getting longer and longer. Eventually, it's hard to maintain.
 
 Fortunately vue provides us with [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) can easily solve the above problem. As the name suggests, it adds a scoped concept to css.
 
@@ -24,11 +23,7 @@ Fortunately vue provides us with [scoped](https://vue-loader.vuejs.org/guide/sco
 
 If you add `<style scoped>` the css will only effect in the current component。For detailed documentation, see [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
 
-::: tip
-With scoped, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
-:::
-
-<br/>
+::: tip With scoped, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes. :::
 
 ## Project Structure
 
@@ -77,7 +72,7 @@ Now let's talk about how to override the element-ui style. Because element-ui st
 
 **Parent component changes child component style.**
 
-If you want a selector in scoped styles to be "deep", i.e. affecting child components, you can use the >>> combinator:
+If you want a selector in scoped styles to be "deep", i.e. affecting child components, you can use the &gt;&gt;&gt; combinator:
 
 ```css
 <style scoped>
@@ -93,7 +88,7 @@ Will be compiled into
 }
 ```
 
-Some pre-processors, such as SASS, may not be able to parse >>> properly. In those cases you can use the /deep/ combinator instead - it's an alias for >>> and works exactly the same.
+Some pre-processors, such as SASS, may not be able to parse &gt;&gt;&gt; properly. In those cases you can use the /deep/ combinator instead - it's an alias for &gt;&gt;&gt; and works exactly the same.
 
 ```css
 .xxx-container >>> .el-button{
@@ -125,9 +120,9 @@ module.exports = {
 
 As described in the previous code, autoprefixer reads the configuration parameters of browserslist under package.json.
 
-- `> 1%` Compatible with browser with global usage above 1%
-- `last 2 versions` Compatible with the last two versions of each browser
-- `not ie <= 8` Not compatible ie8 and below
+* `> 1%` Compatible with browser with global usage above 1%
+* `last 2 versions` Compatible with the last two versions of each browser
+* `not ie <= 8` Not compatible ie8 and below
 
 More detail [browserslist](https://github.com/ai/browserslist)
 
@@ -137,11 +132,11 @@ More detail [browserslist](https://github.com/ai/browserslist)
 
 This project does not set to automatically inject sass mixin to the global, so you need to manually introduce the mixin.
 
-```scss
+```css
 <style rel="stylesheet/scss" lang="scss">
   @import "src/styles/mixin.scss";
 </style>
 ```
 
-If you need to automatically inject mixin global, you can use
-[sass-resources-loader](https://github.com/shakacode/sass-resources-loader).
+If you need to automatically inject mixin global, you can use [sass-resources-loader](https://github.com/shakacode/sass-resources-loader).
+

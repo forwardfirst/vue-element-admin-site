@@ -4,7 +4,7 @@
 
 我还是那个观点，大部分插件建议大家还是自己用 vue 来封装就好了，真的很简单。ECharts 支持 webpack 引入，图省事可以将 ECharts 整个引入 `var echarts = require('echarts')` 不过 ECharts 还是不小的，如果只使用它小部分功能或者图表类型的话建议按需引入。
 
-```js
+```javascript
 // 按需引入 引入 ECharts 主模块
 var echarts = require('echarts/lib/echarts')
 // 引入柱状图
@@ -17,13 +17,13 @@ require('echarts/lib/component/title')
 var echarts = require('echarts')
 ```
 
-[webpack 中使用 ECharts 文档](http://echarts.baidu.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts)
+[webpack 中使用 ECharts 文档](http://echarts.baidu.com/tutorial.html#在%20webpack%20中使用%20ECharts)
 
 [ECharts 按需引入模块文档](https://github.com/ecomfe/echarts/blob/master/index.js)
 
 接下来我们就要在 vue 中声明初始化 ECharts 了。因为 ECharts 初始化必须绑定 dom，所以我们只能在 vue 的 mounted 生命周期里进行初始化。
 
-```js
+```javascript
 mounted() {
   this.initCharts();
 },
@@ -54,7 +54,7 @@ methods: {
 
 就这样简单，ECharts 就配置完成了，这时候你想说我的 data 是远程获取的，或者说我动态改变 ECharts 的配置该怎么办呢？我们可以通过 watch 来触发 setOptions 方法
 
-```js
+```javascript
 //第一种 watch options变化 利用vue的深度 watcher，options 一有变化就重新setOption
 watch: {
   options: {
@@ -78,10 +78,9 @@ watch: {
 
 ![](https://wpimg.wallstcn.com/137aeadd-ad0e-4b21-badd-c53f96b7482b.gif)
 
-::: tip
-具体实例可参照 `@/views/dashboard/admin/components/` 文件下几个 chart 文件
-:::
+::: tip 具体实例可参照 `@/views/dashboard/admin/components/` 文件下几个 chart 文件 :::
 
 ## 其它
 
 当然社区里的其它图表如 [d3](https://github.com/d3/d3) , [Chart.js](https://github.com/chartjs/Chart.js) , [chartist-js](https://github.com/gionkunz/chartist-js) 等封装方法都是大同小异差不多的，这里就不再展开了。
+

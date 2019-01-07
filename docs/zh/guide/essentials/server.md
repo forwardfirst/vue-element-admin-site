@@ -4,15 +4,15 @@
 
 在 `vue-element-admin` 中，一个完整的前端 UI 交互到服务端处理流程是这样的：
 
-1.  UI 组件交互操作；
-2.  调用统一管理的 api service 请求函数；
-3.  使用封装的 request.js 发送请求；
-4.  获取服务端返回；
-5.  更新 data；
+1. UI 组件交互操作；
+2. 调用统一管理的 api service 请求函数；
+3. 使用封装的 request.js 发送请求；
+4. 获取服务端返回；
+5. 更新 data；
 
 从上面的流程可以看出，为了方便管理维护，统一的请求处理都放在 `@/src/api` 文件夹中，并且一般按照 model 纬度进行拆分文件，如：
 
-```
+```text
 api/
   login.js
   article.js
@@ -22,12 +22,11 @@ api/
 
 ## request.js
 
-其中，`@/src/utils/request.js` 是基于 [axios](https://github.com/axios/axios) 的封装，便于统一处理 POST，GET 等请求参数，请求头，以及错误提示信息等。具体可以参看 [request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)。
-它封装了全局 `request拦截器`、`response拦截器`、`统一的错误处理`、`统一做了超时处理`、`baseURL设置等`。
+其中，`@/src/utils/request.js` 是基于 [axios](https://github.com/axios/axios) 的封装，便于统一处理 POST，GET 等请求参数，请求头，以及错误提示信息等。具体可以参看 [request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)。 它封装了全局 `request拦截器`、`response拦截器`、`统一的错误处理`、`统一做了超时处理`、`baseURL设置等`。
 
 ## 一个请求文章列表页的例子：
 
-```js
+```javascript
 // api/article.js
 import request from '../utils/request';
 export function fetchList(query) {
@@ -61,3 +60,4 @@ export default {
 ## 从 mock 直接切换到服务端请求
 
 见[ Mock 和联调](mock-api.md)
+

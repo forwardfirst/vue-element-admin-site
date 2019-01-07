@@ -19,7 +19,7 @@ npm install script-loader -S -D
 
 由于`js-xlsx`体积还是很大的，导出功能也不是一个非常常用的功能，所以使用的时候建议使用懒加载。使用方法如下：
 
-```js
+```javascript
 import('@/vendor/Export2Excel').then(excel => {
   excel.export_json_to_excel({
     header: tHeader, //表头 必填
@@ -31,23 +31,21 @@ import('@/vendor/Export2Excel').then(excel => {
 })
 ```
 
-:::warning 注意 <Badge text="v3.9.1+"/>
-在`v3.9.1+`以后的版本中移除了对 Bolb 的兼容性代码，如果你还需要兼容很低版本的浏览器可以手动引入[blob-polyfill](https://www.npmjs.com/package/blob-polyfill)进行兼容。
-:::
+:::warning 注意  在`v3.9.1+`以后的版本中移除了对 Bolb 的兼容性代码，如果你还需要兼容很低版本的浏览器可以手动引入[blob-polyfill](https://www.npmjs.com/package/blob-polyfill)进行兼容。 :::
 
 ### 参数
 
-| 参数      | 说明                   | 类型    | 可选值                                                                              | 默认值     |
-| --------- | ---------------------- | ------- | ----------------------------------------------------------------------------------- | ---------- |
-| header    | 导出数据的表头         | Array   | /                                                                                   | []         |
-| data      | 导出的具体数据         | Array   | /                                                                                   | []]        |
-| filename  | 导出文件名             | String  | /                                                                                   | excel-list |
-| autoWidth | 单元格是否要自适应宽度 | Boolean | true / false                                                                        | true       |
-| bookType  | 导出文件类型           | String  | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx       |
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| :--- | :--- | :--- | :--- | :--- |
+| header | 导出数据的表头 | Array | / | \[\] |
+| data | 导出的具体数据 | Array | / | \[\]\] |
+| filename | 导出文件名 | String | / | excel-list |
+| autoWidth | 单元格是否要自适应宽度 | Boolean | true / false | true |
+| bookType | 导出文件类型 | String | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx |
 
 ### 示例
 
-```js
+```javascript
 import('@/vendor/Export2Excel').then(excel => {
   const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
   const data = this.list
@@ -61,8 +59,8 @@ import('@/vendor/Export2Excel').then(excel => {
 })
 ```
 
-- [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
-- [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
+* [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
+* [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
 
 ## Excel 导入
 
@@ -70,11 +68,11 @@ import('@/vendor/Export2Excel').then(excel => {
 
 它提供了两个回调函数：
 
-- beforeUpload
+* beforeUpload
 
   你可以在上传之前做一些自己的特殊判断，如判断文件的大小是否大于 1 兆？若大于 1 兆则停止解析并提示错误信息。
 
-  ```js
+  ```javascript
   beforeUpload(file) {
       const isLt1M = file.size / 1024 / 1024 < 1
 
@@ -90,15 +88,15 @@ import('@/vendor/Export2Excel').then(excel => {
     }
   ```
 
-- onSuccess
-  解析成功时候会触发的回调函数，它会返回表格的表头和内容。
+* onSuccess 解析成功时候会触发的回调函数，它会返回表格的表头和内容。
 
-```js
+```javascript
  handleSuccess({ results, header }) {
       this.tableData = results
       this.tableHeader = header
     }
 ```
 
-- [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
-- [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/uploadExcel.vue)
+* [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
+* [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/uploadExcel.vue)
+

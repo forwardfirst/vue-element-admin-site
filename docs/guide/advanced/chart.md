@@ -4,7 +4,7 @@ Managing background charts is also a common requirement. The chart here only rec
 
 I still have that point of view. Most plug-ins recommend that use vue for packaging by yourself. It's really simple. ECharts supports the import of webpack, you can import the whole ECharts `var echarts = require ('echarts')` However, ECharts is not small, if you use only a small part of the features or chart type, then recommend on-demand import.
 
-```js
+```javascript
 // Import on demand -- import ECharts main module
 var echarts = require('echarts/lib/echarts')
 // Import bar
@@ -23,7 +23,7 @@ var echarts = require('echarts')
 
 Next we will declare the initialization of ECharts in vue. Because ECharts initialization must be bound to dom, we can only initialize it during vue's mounted lifetime.
 
-```js
+```javascript
 mounted() {
   this.initCharts();
 },
@@ -54,7 +54,7 @@ methods: {
 
 It's that simple, ECharts is configured, at this point you want to say that my data is obtained remotely, or how do I dynamically change the configuration of ECharts? We can trigger the setOptions method with watch
 
-```js
+```javascript
 // The first watch options change Using the depth of vue watcher, options are re-setOption
 watch: {
   options: {
@@ -78,10 +78,9 @@ In fact, they are all similar, or they must be combined with their own business.
 
 ![](https://wpimg.wallstcn.com/137aeadd-ad0e-4b21-badd-c53f96b7482b.gif)
 
-::: tip Code
-`@/views/dashboard/admin/components`
-:::
+::: tip Code `@/views/dashboard/admin/components` :::
 
 ## Others
 
 Of course there are many other libraries in the community, such as [d3](https://github.com/d3/d3) , [Chart.js](https://github.com/chartjs/Chart.js) , [chartist-js](https://github.com/gionkunz/chartist-js). The packaging methods are almost the same, and they are no longer here.
+

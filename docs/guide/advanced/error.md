@@ -6,19 +6,15 @@
 
 Page-level error handling is handled uniformly by the `vue-router`. All pages that do not match the correct route will advance to the `404` page.
 
-```js
+```javascript
 { path: '*', redirect: '/404' }
 ```
 
-::: warning
-One thing that needs special attention here is that the `404` page must be loaded last. If you put `404` in the constantRouterMap , then the following page will be blocked to `404`. See the problem for details [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176)
-:::
+::: warning One thing that needs special attention here is that the `404` page must be loaded last. If you put `404` in the constantRouterMap , then the following page will be blocked to `404`. See the problem for details [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176) :::
 
 **401**
 
 Permission control is done in `@/permission.js`. All users who do not have permission to access this route will be redirected to the `401` page.
-
-<br/>
 
 ## Request
 
@@ -26,7 +22,7 @@ All the requests in the project will go through the axios instance created in `@
 
 You can use the `service.interceptors.response`, the response interceptor to harmonize different status codes according to your actual business or to perform error handling according to custom code. Such as:
 
-```js
+```javascript
 service.interceptors.response.use(
   response => {
     /**
@@ -75,7 +71,7 @@ service.interceptors.response.use(
 
 Since all requests return a `promise`, you can also pass a `catch` error for each request, which allows for separate processing.
 
-```js
+```javascript
 getInfo()
   .then(res => {})
   .catch(err => {
@@ -85,14 +81,11 @@ getInfo()
 
 ## Coding
 
-This project also does code-level error handling. If you enable `eslint`, you will be prompted for errors when writing code. Such as:
-![](https://wpimg.wallstcn.com/b037f47c-1f7b-487f-bb05-32e7300767d2.png)
+This project also does code-level error handling. If you enable `eslint`, you will be prompted for errors when writing code. Such as: ![](https://wpimg.wallstcn.com/b037f47c-1f7b-487f-bb05-32e7300767d2.png)
 
-Of course there are many errors that cannot be checked by `eslint`, vue also provides global error handling hooks[errorHandler](https://vuejs.org/v2/api/#errorHandler). The project also made a corresponding error collection.
-![](https://wpimg.wallstcn.com/360e4842-4db5-42d0-b078-f9a84a825546.gif)
+Of course there are many errors that cannot be checked by `eslint`, vue also provides global error handling hooks[errorHandler](https://vuejs.org/v2/api/#errorHandler). The project also made a corresponding error collection. ![](https://wpimg.wallstcn.com/360e4842-4db5-42d0-b078-f9a84a825546.gif)
 
-::: tip
-Listening error: [@/errorLog.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/errorLog.js)
+::: tip Listening error: [@/errorLog.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/errorLog.js)
 
-Error display component: [@/components/ErrorLog](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ErrorLog/index.vue)
-:::
+Error display component: [@/components/ErrorLog](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ErrorLog/index.vue) :::
+

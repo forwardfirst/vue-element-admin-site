@@ -4,12 +4,10 @@
 
 在样式开发过程中，有两个问题比较突出：
 
-- 全局污染 —— CSS 文件中的选择器是全局生效的，不同文件中的同名选择器，根据 build 后生成文件中的先后顺序，后面的样式会将前面的覆盖；
+* 全局污染 —— CSS 文件中的选择器是全局生效的，不同文件中的同名选择器，根据 build 后生成文件中的先后顺序，后面的样式会将前面的覆盖；
+* 选择器复杂 —— 为了避免上面的问题，我们在编写样式的时候不得不小心翼翼，类名里会带上限制范围的标示，变得越来越长，多人开发时还很容易导致命名风格混乱，一个元素上使用的选择器个数也可能越来越多，最终导致难以维护。
 
-- 选择器复杂 —— 为了避免上面的问题，我们在编写样式的时候不得不小心翼翼，类名里会带上限制范围的标示，变得越来越长，多人开发时还很容易导致命名风格混乱，一个元素上使用的选择器个数也可能越来越多，最终导致难以维护。
-
-好在 vue 为我们提供了 [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) 可以很方便的解决上述问题。
-它顾名思义给 css 加了一个域的概念。
+好在 vue 为我们提供了 [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) 可以很方便的解决上述问题。 它顾名思义给 css 加了一个域的概念。
 
 ```css
 /* 编译前 */
@@ -25,11 +23,7 @@
 
 只要加上 `<style scoped>` 这样 css 就只会作用在当前组件内了。详细文档见 [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
 
-::: tip
-使用 scoped 后，父组件的样式将不会渗透到子组件中。不过一个子组件的根节点会同时受其父组件的 scoped CSS 和子组件的 scoped CSS 的影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式。
-:::
-
-<br/>
+::: tip 使用 scoped 后，父组件的样式将不会渗透到子组件中。不过一个子组件的根节点会同时受其父组件的 scoped CSS 和子组件的 scoped CSS 的影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式。 :::
 
 ## 目录结构
 
@@ -57,8 +51,6 @@ vue-element-admin 所有全局样式都在 `@/src/styles` 目录下设置
 /* local styles */
 </style>
 ```
-
-<br>
 
 ## 自定义 element-ui 样式
 
@@ -106,13 +98,11 @@ vue-element-admin 所有全局样式都在 `@/src/styles` 目录下设置
 
 [官方文档](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
-<br>
-
-## Autoprefixer [新版本已无该问题]
+## Autoprefixer \[新版本已无该问题\]
 
 vue-cli 有一个小坑，它默认 autoprefixer 只会对通过 vue-loader 引入的样式才会有有作用，换而言之也就是 .vue 文件里面的 css autoprefixer 才会效果。相关问题 [issues/544](https://github.com/vuejs-templates/webpack/issues/544) , [issues/600](https://github.com/vuejs-templates/webpack/issues/600) 。解决方案也很简单粗暴
 
-```html
+```markup
 //app.vue
 <style lang="scss">
   @import './styles/index.scss'; // 全局自定义的css样式
@@ -120,8 +110,6 @@ vue-cli 有一个小坑，它默认 autoprefixer 只会对通过 vue-loader 引�
 ```
 
 你在 .vue 文件中引入你要的样式就可以了，或者你可以改变 vue-cli 的文件在 css-loader 前面在加一个 postcss-loader，在前面的 issue 地址中已经给出了解决方案。不过新版本已经默认解决处理了这个问题。
-
-<br>
 
 ## Postcss
 
@@ -145,24 +133,23 @@ module.exports = {
 
 如上面代码所述的，autoprefixer 会去读取 package.json 下 browserslist 的配置参数
 
-- `> 1%` 兼容全球使用率大于 1%的浏览器
-- `last 2 versions` 兼容每个浏览器的最近两个版本
-- `not ie <= 8` 不兼容 ie8 及以下
+* `> 1%` 兼容全球使用率大于 1%的浏览器
+* `last 2 versions` 兼容每个浏览器的最近两个版本
+* `not ie <= 8` 不兼容 ie8 及以下
 
 具体可见 [browserslist](https://github.com/ai/browserslist)
 
 `postcss`也还有很多很多其它的功能大家可以[自行去探究](https://www.postcss.parts/)
 
-<br>
-
 ## Mixin
 
 本项目没有设置自动注入 sass 的 mixin 到全局，所以需要在使用的地方手动引入 mixin
 
-```scss
+```css
 <style rel="stylesheet/scss" lang="scss">
   @import "src/styles/mixin.scss";
 </style>
 ```
 
 如需要自动将 mixin 注入到全局 ，可以使用[sass-resources-loader](https://github.com/shakacode/sass-resources-loader)
+

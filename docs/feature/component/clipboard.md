@@ -10,11 +10,11 @@ This project provides two ways to use.
 
 ## Use directly
 
-```html
+```markup
 <el-button @click='handleCopy(inputData,$event)'>copy</el-button>
 ```
 
-```js
+```javascript
 import clip from '@/utils/clipboard.js' // use clipboard directly
 
 methods: {
@@ -28,14 +28,11 @@ First of all, import `clipboard.js` and set `click` function.
 
 `clip()` The first parameter is the contents of the copy, the second parameter is the event event. Both parameters are required.
 
-<br/>
-<br/>
-
 ## v-directive
 
 This project also encapsulates a `v-clipboard`.
 
-```html
+```markup
  <el-button
    v-clipboard:copy='inputData'
    v-clipboard:success='clipboardSuccess'>
@@ -43,7 +40,7 @@ This project also encapsulates a `v-clipboard`.
 </el-button>
 ```
 
-```js
+```javascript
 import clipboard from '@/directive/clipboard/index.js' // use clipboard by v-directive
 
 directives: {
@@ -63,3 +60,4 @@ methods: {
 `v-clipboard:copy`: the copy of the content.
 
 `v-clipboard:success`: success callback function.
+

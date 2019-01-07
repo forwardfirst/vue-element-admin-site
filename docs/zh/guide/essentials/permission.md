@@ -1,6 +1,6 @@
 # 权限验证
 
-在 [手摸手，带你用 vue 撸后台 系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac) 这篇文章中其实已经详细介绍过了。
+在 [手摸手，带你用 vue 撸后台 系列二\(登录权限篇\)](https://juejin.im/post/591aa14f570c35006961acac) 这篇文章中其实已经详细介绍过了。
 
 该项目中权限的实现方式是：通过获取当前用户的权限去比对路由表，生成当前用户具的权限可访问的路由表，通过 `router.addRoutes` 动态挂载到 `router` 上。
 
@@ -8,7 +8,7 @@
 
 只是多了一步将后端返回路由表和本地的组件映射到一起。相关[issue](https://github.com/PanJiaChen/vue-element-admin/issues/293)
 
-```js
+```javascript
 const map={
  login:require('login/index').default // 同步的方式
  login:()=>import('login/index')      // 异步的方式
@@ -33,7 +33,7 @@ Ps:不排除之后本项目会增加权限控制面板支持真正的动态配�
 
 **使用**
 
-```html
+```markup
 <template>
   <!-- Admin can see this -->
   <el-tag v-permission="['admin']">admin</el-tag>
@@ -60,7 +60,7 @@ In some cases it is not suitable to use v-permission, such as element Tab compon
 
 可以使用全局权限判断函数，用法和指令 `v-permission` 类似。
 
-```html
+```markup
 <template>
   <el-tab-pane v-if="checkPermission(['admin'])" label="Admin">Admin can see this</el-tab-pane>
   <el-tab-pane v-if="checkPermission(['editor'])" label="Editor">Editor can see this</el-tab-pane>
@@ -77,3 +77,4 @@ export default{
 }
 </script>
 ```
+

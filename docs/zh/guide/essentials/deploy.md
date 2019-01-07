@@ -16,15 +16,13 @@ npm run build:sit
 
 如果需要自定义构建，比如指定 `dist` 目录等，则需要通过 [config](https://github.com/PanJiaChen/vue-element-admin/blob/master/config/index.js) 进行配置。
 
-<br>
-
 ## 环境变量
 
 所有测试环境或者正式环境变量的配置都在 [@/build/config](https://github.com/PanJiaChen/vue-element-admin/tree/master/config) 目录之下
 
 它们都会通过 `webpack.DefinePlugin` 插件注入到全局
 
-```js
+```javascript
 new webpack.DefinePlugin({
   'process.env': require('../config/xxx.env')
 })
@@ -32,12 +30,10 @@ new webpack.DefinePlugin({
 
 你可以在你的代码中直接使用即可访问你配置的环境变量，如：
 
-```js
+```javascript
 // 这样即可获取配置在 @/build/config api 的 base_url 了
 const baseURL = process.env.BASE_API,
 ```
-
-<br>
 
 ## 分析构建文件体积
 
@@ -47,27 +43,21 @@ const baseURL = process.env.BASE_API,
 npm run build:prod --report
 ```
 
-运行之后你就可以在 http://127.0.0.1:8888 页面看到具体的体积分布
+运行之后你就可以在 [http://127.0.0.1:8888](http://127.0.0.1:8888) 页面看到具体的体积分布
 
 ![](https://wpimg.wallstcn.com/3fddf034-2b38-4299-b0d2-b748fb2abef0.jpg)
 
 具体的优化可以参考 [Webpack 大法之 Code Splitting](https://zhuanlan.zhihu.com/p/26710831)
 
-::: tip
-强烈建议开启 gzip ，使用之后普遍体积只有原先 1/3 左右。打出来的 app.js 过大，查看一下是不是 Uglify 配置不正确或者 sourceMap 没弄对。 优化相关请看该 [Webpack Freestyle 之 Long Term Cache](https://zhuanlan.zhihu.com/p/27710902)
-:::
-
-<br>
+::: tip 强烈建议开启 gzip ，使用之后普遍体积只有原先 1/3 左右。打出来的 app.js 过大，查看一下是不是 Uglify 配置不正确或者 sourceMap 没弄对。 优化相关请看该 [Webpack Freestyle 之 Long Term Cache](https://zhuanlan.zhihu.com/p/27710902) :::
 
 ## 发布
 
 对于发布来讲，只需要将最终生成的静态文件，也就是通常情况下 `dist` 文件夹的静态文件发布到你的 cdn 或者静态服务器即可，需要注意的是其中的 `index.html` 通常会是你后台服务的入口页面，在确定了 js 和 css 的静态之后可能需要改变页面的引入路径。
 
-::: tip
-部署时可能会发现资源路径不对 ,只需修改 `config/index.js` 文件资源路径即可。
-:::
+::: tip 部署时可能会发现资源路径不对 ,只需修改 `config/index.js` 文件资源路径即可。 :::
 
-```js
+```javascript
 assetsPublicPath: './' //请根据自己路径来配置更改
 ```
 
@@ -77,10 +67,9 @@ vue-element-admin 中，前端路由使用的是 `vue-router`，所以你可以�
 
 两者的区别简单来说是对路由方式的处理不一样，`hashHistory` 是以 `#` 后面的路径进行处理，通过 [HTML 5 History](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 进行前端路由管理，而 `browserHistory` 则是类似我们通常的页面访问路径，并没有 `#`，但要通过服务端的配置，能够访问指定的 url 都定向到当前页面，从而能够进行前端的路由管理。
 
-本项目默认使用的是 `hashHistory` ，所以如果你的 url 里有 `#`，想去掉的话，需要切换为 `browserHistory`。
-修改 `src/router/index.js` 中的 mode 即可
+本项目默认使用的是 `hashHistory` ，所以如果你的 url 里有 `#`，想去掉的话，需要切换为 `browserHistory`。 修改 `src/router/index.js` 中的 mode 即可
 
-```js
+```javascript
 export default new Router({
   // mode: 'history', //后端支持可开
 })
@@ -111,24 +100,20 @@ location / {
 }
 ```
 
-::: tip
-更多配置请查看 [vue-router 文档](https://router.vuejs.org/zh-cn/essentials/history-mode.html)
-:::
+::: tip 更多配置请查看 [vue-router 文档](https://router.vuejs.org/zh-cn/essentials/history-mode.html) :::
 
 ## Apache
 
-1.  需要修改`router/index.js`中`new Router` 配置，加一个`base: '/vue/'`, 它指定应用的基路径，该应用是服务于`localhost/vue`路径下，所以必须加`base`配置，否则应用会展示 404 页面
-2.  需要修改`config/index.js`中 build 下的`assetsPublicPath: '/vue/'`，如果用相对路径，chunk 文件会报错找不到。
-3.  修改`httpd.conf`文件，开启 rewrite_module 功能。
-
-- `LoadModule rewrite_module libexec/apache2/mod_rewrite.so`，去掉前面的#。
-- 然后找到`AllowOverride None`的那行，把它改成`AllowOverride All`，来使`.htaccess`文件生效。
-
-4.  在 apache 的`www/vue` 目录下新建`.htaccess`文件, 需要修改`RewriteRule` 为`/vue/index.html`, 否则刷新页面服务端会直接报 404 错误。
+1. 需要修改`router/index.js`中`new Router` 配置，加一个`base: '/vue/'`, 它指定应用的基路径，该应用是服务于`localhost/vue`路径下，所以必须加`base`配置，否则应用会展示 404 页面
+2. 需要修改`config/index.js`中 build 下的`assetsPublicPath: '/vue/'`，如果用相对路径，chunk 文件会报错找不到。
+3. 修改`httpd.conf`文件，开启 rewrite\_module 功能。
+4. `LoadModule rewrite_module libexec/apache2/mod_rewrite.so`，去掉前面的\#。
+5. 然后找到`AllowOverride None`的那行，把它改成`AllowOverride All`，来使`.htaccess`文件生效。
+6. 在 apache 的`www/vue` 目录下新建`.htaccess`文件, 需要修改`RewriteRule` 为`/vue/index.html`, 否则刷新页面服务端会直接报 404 错误。
 
 .htaccess 文件内容
 
-```
+```text
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -140,3 +125,4 @@ location / {
 ```
 
 相关[issue](https://github.com/PanJiaChen/vue-element-admin/issues/370)
+
